@@ -2,11 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>Happy Birthday</title>
+	<title>_</title>
     <link rel="stylesheet" href="assert/css/style.css" />
 </head>
 <body>
-	
+	<div class="main">
+    <div class="content">
+    <div class="left">&nbsp;</div>
+    <div class="right">Typeing
+    <span id="pointer">|<span>
+    </div>
+    <div class="buttom"></div>
+    </div>
+    </div>
 </body>
-<script type="text/javascript" src="assert/script/zepto.min.js" ></script>
+<script type="text/javascript" src="assert/script/zepto.js" ></script>
+<script type="text/javascript">
+var $porinter = $('#pointer');
+function flash_pinter(){
+    $porinter.toggle();
+}
+setInterval(flash_pinter,800);
+</script>
 </html>
