@@ -1,28 +1,60 @@
-var $porinter = $('#pointer');
-var $textarea = $('#textarea');
-var msg = "This is a message typeed by lvni \n";
-function flash_pinter(){
-    $porinter.toggle();
-}
 function sleep(n){
     var start=new Date().getTime();
     while(true) if(new Date().getTime()-start>n) break;
 }
-function f2(){
-/*长任务*/
-sleep(3000);
-text = "ln";
-$textarea.html($textarea.html() + text);
-}
-function f3(){
-text = " out ";
-$textarea.html($textarea.html() + text);
-}
-function emf(){/*空函数，注册事件，实现异步*/}
-function f1(){
-    setTimeout(function(){$(emf).trigger('done')},1000);
-    setInterval(flash_pinter,800);
-}
-$(emf).bind('done',f3);
-$(emf).bind('done',f2);
-f1();
+
+/**
+ * 将字符直接打印在目标上
+ * 可以用静态成员数组的办法，将目标缓存，减少操作dom的消耗
+ * #第三方库的元素选择器是否有做缓存
+ **/
+
+function Typing(params){
+    params = params || {};
+    var target = params.target;
+    var message = params.message;
+    var rate = params.rate || 150;
+    var point_rate = 500;
+    var pointer = params.pointer;
+    var flash_pinter =function (){
+        $(pointer).toggle();
+    }
+    // 启动光标
+    setInterval(flash_pinter,point_rate);
+    var point = 0;
+    var messagelen = message.length;
+    var Print2target = function(target,character){
+    var _target = $(target);
+    var new_content = _target.html()  + character;
+    _target.html(new_content);
+   }
+   this.run = function(){
+      ra = rate;
+      if(!target){console.log("target not found");return;};
+      if(point <= messagelen){
+        ch = message.substr(point++,1);
+        printch = ch;
+        if(ch == '\\'){
+            vch = message.substr(point++,1);
+            if(vch == "n"){
+                printch = "<br/>";
+                // 换行延迟
+                ra += 200;
+            }
+        }
+        // else if(ch == " "){
+            // printch = "&nbsp;";
+        // }
+        
+        Print2target(target,printch);
+        setTimeout(arguments.callee,ra);
+      }else{
+        console.log("done");
+      }
+   }
+} 
+var t = new Typing({pointer:'#pointer',target:'#textarea',message:"lvni is Typeing a message to you！\ndo  you know 试下中文"});
+var t2 = new Typing({pointer:'#apointer',target:'#atextarea',
+message:"中华人民共和国，在今天成立了,中文看起来还是比较短啊，再输入一段英文试试？\nup up down down"});
+t.run();
+t2.run();

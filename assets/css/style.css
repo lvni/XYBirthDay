@@ -11,8 +11,11 @@
 }
 .left{
     float:left;
-    width:500px;
+    width:495px;
     height:180px;
+    background-color :#1F1F1F;
+    color : #2E8B57;
+    margin-right:5px;
 }
 .right{
     float:left;
