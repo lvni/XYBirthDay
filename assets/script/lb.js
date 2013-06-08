@@ -1,4 +1,3 @@
-alert('ok');
 var $porinter = $('#pointer');
 var $textarea = $('#textarea');
 var msg = "This is a message typeed by lvni \n";
@@ -27,4 +26,3 @@ function f1(){
 $(emf).bind('done',f3);
 $(emf).bind('done',f2);
 f1();
-alert('why');
