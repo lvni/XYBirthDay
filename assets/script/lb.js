@@ -53,8 +53,3 @@ function Typing(params){
       }
    }
 } 
-var t = new Typing({pointer:'#pointer',target:'#textarea',message:"lvni is Typeing a message to you！\ndo  you know 试下中文"});
-var t2 = new Typing({pointer:'#apointer',target:'#atextarea',
-message:"中华人民共和国，在今天成立了,中文看起来还是比较短啊，再输入一段英文试试？\nup up down down"});
-t.run();
-t2.run();
